@@ -8,6 +8,7 @@ import 'package:fluvidmobile/utils/networking.dart';
 import 'package:fluvidmobile/utils/update_service.dart';
 import 'package:fluvidmobile/widgets/videos_list.dart';
 import '../constants.dart';
+import '../modals/folder.dart';
 
 class ArchiveFragment extends StatefulWidget {
   @override

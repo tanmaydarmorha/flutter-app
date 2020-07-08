@@ -606,20 +606,24 @@ class _VideoScreenState extends State<VideoScreen> {
           label: Text(widget.currentVideo.tags[index]),
           backgroundColor: Color(0xFFDEEDFF),
           deleteIcon: Icon(Icons.close),
-          onDeleted: () async {
-            if (await UpdateService.deleteTag(
-                videoId: widget.currentVideo.videoId,
-                tag: widget.currentVideo.tags[index])) {
-              setState(() {
-                widget.currentVideo.tags.removeAt(index);
-              });
-            }
-            snackBarMessage = 'Tag Removed';
-            _scaffoldKey.currentState.showSnackBar(SnackBar(
-              content: Text(snackBarMessage),
-              duration: Duration(milliseconds: 1500),
-            ));
-          },
+          onDeleted: widget.currentVideo.videoStatus == 1
+              ? () async {
+                  if (await UpdateService.deleteTag(
+                      videoId: widget.currentVideo.videoId,
+                      tag: widget.currentVideo.tags[index])) {
+                    setState(() {
+                      widget.currentVideo.tags.removeAt(index);
+                      snackBarMessage = 'Tag Removed';
+                    });
+                  } else {
+                    snackBarMessage = 'Could not remove tag';
+                  }
+                  _scaffoldKey.currentState.showSnackBar(SnackBar(
+                    content: Text(snackBarMessage),
+                    duration: Duration(milliseconds: 1500),
+                  ));
+                }
+              : null,
         ),
       );
     }
@@ -786,7 +790,7 @@ class _VideoScreenState extends State<VideoScreen> {
                                           if (await UpdateService.updateTitle(
                                             videoId:
                                                 widget.currentVideo.videoId,
-                                            title: widget.currentVideo.title,
+                                            title: newTitle,
                                           )) {
                                             setState(() {
                                               widget.currentVideo.title =

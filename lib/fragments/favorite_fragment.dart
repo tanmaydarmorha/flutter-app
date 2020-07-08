@@ -182,23 +182,25 @@ class _FavoriteFragmentState extends State<FavoriteFragment> {
                                     });
                                   },
                                 );
-                                Folder newFolder =
-                                    await UpdateService.addNewFolder(
-                                  folderName: response,
-                                  parentFolderId: '',
-                                  favourite: 'true',
-                                );
-                                if (newFolder != null) {
-                                  setState(() {
-                                    folders.add(newFolder);
-                                  });
-                                  Scaffold.of(context).showSnackBar(SnackBar(
-                                    content: Text('New Folder Added'),
-                                  ));
-                                } else {
-                                  Scaffold.of(context).showSnackBar(SnackBar(
-                                    content: Text('Could not add new folder'),
-                                  ));
+                                if (response != null) {
+                                  Folder newFolder =
+                                      await UpdateService.addNewFolder(
+                                    folderName: response,
+                                    parentFolderId: '',
+                                    favourite: 'true',
+                                  );
+                                  if (newFolder != null) {
+                                    setState(() {
+                                      folders.add(newFolder);
+                                    });
+                                    Scaffold.of(context).showSnackBar(SnackBar(
+                                      content: Text('New Folder Added'),
+                                    ));
+                                  } else {
+                                    Scaffold.of(context).showSnackBar(SnackBar(
+                                      content: Text('Could not add new folder'),
+                                    ));
+                                  }
                                 }
                               },
                               borderRadius:

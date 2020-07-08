@@ -9,6 +9,7 @@ import 'package:fluvidmobile/screens/video_screen.dart';
 import 'package:fluvidmobile/utils/networking.dart';
 import 'package:fluvidmobile/utils/update_service.dart';
 import 'package:progress_dialog/progress_dialog.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../constants.dart';
 
@@ -91,7 +92,8 @@ class _VideosListState extends State<VideosList> {
     NetworkHelper networkHelper =
         NetworkHelper(url: 'https://api.fluvid.com/api/v1/videos/$videoId');
     var response = await networkHelper.getData(token: currentUserToken);
-    if (response['message'] == 'Access Denied') {
+    if (response['message'] == 'Access Denied' ||
+        response['data']['data'] == null) {
       return null;
     }
 
@@ -143,27 +145,82 @@ class _VideosListState extends State<VideosList> {
         : videos.isEmpty
             ? SliverToBoxAdapter(
                 child: Container(
-                  height: 150,
                   decoration: BoxDecoration(
                     border: Border.all(color: Color(0xFFD9D9D9)),
                     color: Color(0xFFFFFFFF),
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(
-                        FontAwesome5Solid.video_slash,
-                        size: 70,
-                        color: Color(0xFFADAEAE),
-                      ),
-                      Text(
-                        'No Video Found.',
-                        style: TextStyle(
-                          fontSize: 20,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          FontAwesome5Solid.video_slash,
+                          size: 70,
                           color: Color(0xFFADAEAE),
                         ),
-                      ),
-                    ],
+                        Text(
+                          'No Video Found.',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Color(0xFFADAEAE),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        AutoSizeText(
+                          'Record or Stream your first video by installing Fluvid Chrome Extension',
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 14,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: 10),
+                        MaterialButton(
+                          onPressed: () async {
+                            const url =
+                                'https://chrome.google.com/webstore/detail/fluvid-screen-video-recor/hfadalcgppcbffdnichplalnmhjbabbm';
+                            if (await canLaunch(url)) {
+                              await launch(url);
+                            } else {
+                              throw 'Could not launch $url';
+                            }
+                          },
+                          disabledColor: Colors.grey,
+                          color: Color(0xFFFFD341),
+                          textColor: Colors.black,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Icon(
+                                AntDesign.chrome,
+                                size: 20,
+                              ),
+                              SizedBox(width: 10),
+                              Text(
+                                'Add To Chrome',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xFF000000),
+                                ),
+                              ),
+                            ],
+                          ),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30)),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'Fluvid mobile application is intended for users who would like to manage their Fluvid recording and video settings on the go.',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey.shade600,
+                          ),
+                          textAlign: TextAlign.justify,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               )
@@ -208,7 +265,7 @@ class _VideosListState extends State<VideosList> {
 
                           if (currentVideo == null) {
                             Scaffold.of(context).showSnackBar(SnackBar(
-                                content: Text('Access Denied'),
+                                content: Text('Cannot view Video'),
                                 duration: Duration(milliseconds: 1500)));
                           } else {
                             await Navigator.push(
@@ -224,6 +281,10 @@ class _VideosListState extends State<VideosList> {
                           if (removeVideo) {
                             setState(() {
                               videos.removeAt(index);
+                            });
+                          } else {
+                            setState(() {
+                              fetchData();
                             });
                           }
                         },
