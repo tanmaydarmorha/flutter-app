@@ -131,7 +131,7 @@ class _SocialLoginScreenState extends State<SocialLoginScreen> {
                                                   HomeScreen()));
                                     }
                                   },
-                                  buttonText: 'Login With Google',
+                                  buttonText: 'Google',
                                   circleAvatar: CircleAvatar(
                                     backgroundColor: Color(0xFFFFFFFF),
                                     child: Image.asset(
@@ -142,43 +142,43 @@ class _SocialLoginScreenState extends State<SocialLoginScreen> {
                                 ),
                               )
                             : SizedBox(),
-//                        SizedBox(
-//                          width: MediaQuery.of(context).viewInsets.bottom == 0.0
-//                              ? 10
-//                              : 0,
-//                        ),
-//                        MediaQuery.of(context).viewInsets.bottom == 0.0
-//                            ? Expanded(
-//                                child: SocialMediaButton(
-//                                  onPressed: () async {
-//                                    setState(() {
-//                                      hud = true;
-//                                    });
-//                                    loggedInUser =
-//                                        await AuthService.handleFacebookSignIn(
-//                                            context);
-//                                    setState(() {
-//                                      hud = false;
-//                                    });
-//                                    if (loggedInUser != null) {
-//                                      Navigator.pushReplacement(
-//                                          context,
-//                                          MaterialPageRoute(
-//                                              builder: (BuildContext context) =>
-//                                                  HomeScreen()));
-//                                    }
-//                                  },
-//                                  circleAvatar: CircleAvatar(
-//                                    backgroundColor: Color(0xFFF6F6F6),
-//                                    child: Icon(
-//                                      FontAwesome.facebook_f,
-//                                      color: Color(0xFF4267B2),
-//                                    ),
-//                                  ),
-//                                  buttonText: 'Facebook ',
-//                                ),
-//                              )
-//                            : SizedBox(),
+                        SizedBox(
+                          width: MediaQuery.of(context).viewInsets.bottom == 0.0
+                              ? 10
+                              : 0,
+                        ),
+                        MediaQuery.of(context).viewInsets.bottom == 0.0
+                            ? Expanded(
+                                child: SocialMediaButton(
+                                  onPressed: () async {
+                                    setState(() {
+                                      hud = true;
+                                    });
+                                    loggedInUser =
+                                        await AuthService.handleFacebookSignIn(
+                                            context);
+                                    setState(() {
+                                      hud = false;
+                                    });
+                                    if (loggedInUser != null) {
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  HomeScreen()));
+                                    }
+                                  },
+                                  circleAvatar: CircleAvatar(
+                                    backgroundColor: Color(0xFFF6F6F6),
+                                    child: Icon(
+                                      FontAwesome.facebook_f,
+                                      color: Color(0xFF4267B2),
+                                    ),
+                                  ),
+                                  buttonText: 'Facebook ',
+                                ),
+                              )
+                            : SizedBox(),
                       ],
                     ),
                     Padding(

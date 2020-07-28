@@ -79,6 +79,7 @@ class AuthService {
       currentUserToken = response['data']['userToken'];
       prefs.setString('fluvidToken', currentUserToken);
 
+      // do not call _handleSignInDetails as the API endpoints are different
       return User(
         firstName: response['data']['userInfo']['first_name'],
         lastName: response['data']['userInfo']['last_name'],

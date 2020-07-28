@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+///Stateless widget used to create custom background for login screen
+///and sign-up screen
 class Background extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

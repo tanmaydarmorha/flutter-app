@@ -5,6 +5,8 @@ import 'package:fluvidmobile/modals/video.dart';
 import 'package:fluvidmobile/utils/update_service.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
+/// [ModalBottomSheet] is rendered on screen showing the viewers which are
+/// granted access to the video
 class ViewerListModalSheet extends StatefulWidget {
   final List<String> viewerList;
   final Video currentVideo;

@@ -14,7 +14,10 @@ import 'package:url_launcher/url_launcher.dart';
 import '../constants.dart';
 
 class VideosList extends StatefulWidget {
+  /// takes url as input for api call
   final String videosUrl;
+
+  /// takes Screen enum as input for checking which screen is calling for videos
   final Screens currentScreen;
 
   const VideosList({
@@ -27,8 +30,13 @@ class VideosList extends StatefulWidget {
 }
 
 class _VideosListState extends State<VideosList> {
+  /// List of videos
   List<VideoCardTile> videos;
+
+  /// Video details of the tapped video
   Video currentVideo;
+
+  /// progress dialog while the video details are fetched from API call
   ProgressDialog pr;
 
   @override
@@ -41,6 +49,7 @@ class _VideosListState extends State<VideosList> {
     }
   }
 
+  /// Function takes JSON as input and set data for the videos list
   List<VideoCardTile> getVideosList(videoData) {
     List<VideoCardTile> videos = [];
     for (var video in videoData) {
@@ -54,6 +63,7 @@ class _VideosListState extends State<VideosList> {
     return videos;
   }
 
+  /// Function does the network call and fetches data for the videos list
   fetchData() async {
     NetworkHelper networkHelper = NetworkHelper(url: widget.videosUrl);
     var response = await networkHelper.getData(token: currentUserToken);
@@ -88,6 +98,7 @@ class _VideosListState extends State<VideosList> {
     }
   }
 
+  /// Function does the network call and
   Future<Video> getVideoData({videoId}) async {
     NetworkHelper networkHelper =
         NetworkHelper(url: 'https://api.fluvid.com/api/v1/videos/$videoId');

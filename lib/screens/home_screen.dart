@@ -45,6 +45,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedDrawerIndex = 0;
 
+  /// renders a particular fragment on screen
   getDrawerItemWidget(int selectedDrawerIndex) {
     switch (selectedDrawerIndex) {
       case 0:
@@ -62,7 +63,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 

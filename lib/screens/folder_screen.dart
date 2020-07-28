@@ -25,6 +25,7 @@ class _FolderScreenState extends State<FolderScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   String snackBarMessage = '';
 
+  /// get list of folders in the current directory
   getFolderList() async {
     NetworkHelper networkHelper = NetworkHelper(
         url:

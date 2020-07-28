@@ -44,8 +44,8 @@ const kPrivacyOptionsTextFieldDecoration = InputDecoration(
   filled: true,
 );
 
-//not a constant but used to start HUD
+// not a constant but used to start HUD
 bool videoPageHud = false;
 
+// variable used to check if video is deleted or removed
 bool removeVideo = false;
-

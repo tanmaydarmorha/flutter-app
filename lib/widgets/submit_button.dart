@@ -1,6 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
+/// Stateless Widget that creates a button for submitting forms
+///
+/// [color] takes [Color] for the color of the button
+/// [buttonText] takes String as input for the button text
+/// [onPressed] takes a function as input for onTap
 class SubmitButton extends StatelessWidget {
   final Color color;
   final String buttonText;

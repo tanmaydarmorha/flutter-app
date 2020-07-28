@@ -138,7 +138,7 @@ class _SocialSignUpScreenState extends State<SocialSignUpScreen> {
                                       builder: (BuildContext context) =>
                                           HomeScreen()));
                             },
-                            buttonText: 'Sign Up With Google',
+                            buttonText: 'Google Sign Up',
                             circleAvatar: CircleAvatar(
                               backgroundColor: Color(0xFFFFFFFF),
                               child: Image.asset(
@@ -148,33 +148,33 @@ class _SocialSignUpScreenState extends State<SocialSignUpScreen> {
                             ),
                           )
                         : SizedBox(),
-//                    SizedBox(
-//                      height: MediaQuery.of(context).viewInsets.bottom == 0.0
-//                          ? 10
-//                          : 0,
-//                    ),
-//                    MediaQuery.of(context).viewInsets.bottom == 0.0
-//                        ? SocialMediaButton(
-//                            onPressed: () async {
-//                              loggedInUser =
-//                                  await AuthService.handleFacebookSignIn(
-//                                      context);
-//                              Navigator.pushReplacement(
-//                                  context,
-//                                  MaterialPageRoute(
-//                                      builder: (BuildContext context) =>
-//                                          HomeScreen()));
-//                            },
-//                            circleAvatar: CircleAvatar(
-//                              backgroundColor: Color(0xFFF6F6F6),
-//                              child: Icon(
-//                                FontAwesome.facebook_f,
-//                                color: Color(0xFF4267B2),
-//                              ),
-//                            ),
-//                            buttonText: 'Facebook Sign Up',
-//                          )
-//                        : SizedBox(),
+                    SizedBox(
+                      height: MediaQuery.of(context).viewInsets.bottom == 0.0
+                          ? 10
+                          : 0,
+                    ),
+                    MediaQuery.of(context).viewInsets.bottom == 0.0
+                        ? SocialMediaButton(
+                            onPressed: () async {
+                              loggedInUser =
+                                  await AuthService.handleFacebookSignIn(
+                                      context);
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          HomeScreen()));
+                            },
+                            circleAvatar: CircleAvatar(
+                              backgroundColor: Color(0xFFF6F6F6),
+                              child: Icon(
+                                FontAwesome.facebook_f,
+                                color: Color(0xFF4267B2),
+                              ),
+                            ),
+                            buttonText: 'Facebook Sign Up',
+                          )
+                        : SizedBox(),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 12.0),
                       child: Stack(
@@ -259,9 +259,10 @@ class _SocialSignUpScreenState extends State<SocialSignUpScreen> {
                                 message,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: Color(message == 'Email Sent'
-                                        ? 0xFF509B4B
-                                        : 0xFFFF0000)),
+                                  color: Color(message == 'Email Sent'
+                                      ? 0xFF509B4B
+                                      : 0xFFFF0000),
+                                ),
                               ),
                             ),
                           )

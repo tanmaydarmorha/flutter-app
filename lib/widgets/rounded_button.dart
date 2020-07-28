@@ -1,6 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
+/// Stateless Widget that creates the Google Login
+/// and Facebook Login buttons
+///
+/// [onPressed] takes a function to be performed on single tap,
+/// [circleAvatar] takes a [CircleAvatar] for the icon of the platform
+/// [buttonText] takes a string for the text of the button
 class SocialMediaButton extends StatelessWidget {
   final Function onPressed;
   final CircleAvatar circleAvatar;

@@ -7,8 +7,8 @@ import 'package:http_parser/http_parser.dart';
 
 class UpdateService {
   static Future<String> updateFavoriteVideo({videoId, isFavorite}) async {
-    NetworkHelper networkHelper = NetworkHelper(
-        url: 'https://api.fluvid.com/api/v1/videos/favourite/');
+    NetworkHelper networkHelper =
+        NetworkHelper(url: 'https://api.fluvid.com/api/v1/videos/favourite/');
 
     var response = await networkHelper.putData(
       header: {
@@ -27,8 +27,7 @@ class UpdateService {
 
   static Future<bool> updatePrivacyOption({videoId, urlBody}) async {
     NetworkHelper networkHelper = NetworkHelper(
-        url:
-            'https://api.fluvid.com/api/v1/videos/privacySettings/$videoId');
+        url: 'https://api.fluvid.com/api/v1/videos/privacySettings/$videoId');
 
     var response = await networkHelper.putData(
       header: {
@@ -96,8 +95,8 @@ class UpdateService {
   }
 
   static Future<bool> updateFolderName({folderId, urlBody}) async {
-    NetworkHelper networkHelper = NetworkHelper(
-        url: 'https://api.fluvid.com/api/v1/folders/$folderId');
+    NetworkHelper networkHelper =
+        NetworkHelper(url: 'https://api.fluvid.com/api/v1/folders/$folderId');
 
     var response = await networkHelper.putData(
       header: {
@@ -142,8 +141,8 @@ class UpdateService {
   }
 
   static Future<bool> addFolderToFavorites({folderId, isFavorite}) async {
-    NetworkHelper networkHelper = NetworkHelper(
-        url: 'https://api.fluvid.com/api/v1/folders/favourite/');
+    NetworkHelper networkHelper =
+        NetworkHelper(url: 'https://api.fluvid.com/api/v1/folders/favourite/');
 
     var response = await networkHelper.putData(
       header: {
@@ -436,8 +435,8 @@ class UpdateService {
   }
 
   static Future<bool> resetPassword({email}) async {
-    NetworkHelper networkHelper = NetworkHelper(
-        url: 'https://api.fluvid.com/api/v1/auth/forgotPassword');
+    NetworkHelper networkHelper =
+        NetworkHelper(url: 'https://api.fluvid.com/api/v1/auth/forgotPassword');
 
     var response = await networkHelper.putData(
       header: {

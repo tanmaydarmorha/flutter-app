@@ -18,6 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
     openFirstScreen();
   }
 
+  /// Check if the user is logged in.
   openFirstScreen() async {
     final prefs = await SharedPreferences.getInstance();
     String token = prefs.getString('fluvidToken');

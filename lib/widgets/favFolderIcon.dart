@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
+
+/// Stateless widget used to create icon of the folder which
+/// is in favorites
 class FavFolderIcon extends StatelessWidget {
   const FavFolderIcon({
     Key key,

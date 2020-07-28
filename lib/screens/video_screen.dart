@@ -99,6 +99,7 @@ class _VideoScreenState extends State<VideoScreen> {
     super.dispose();
   }
 
+  /// Function takes [String] as input date and formats in the required form6
   formatDate(date) {
     print(date);
     var formattedDate = DateTime.parse(date);
@@ -147,6 +148,7 @@ class _VideoScreenState extends State<VideoScreen> {
     return '$month ${formattedDate.day}, ${formattedDate.year}';
   }
 
+  /// Function does a network call and fetches comments on the given video
   Future<List<Comment>> fetchComments() async {
     NetworkHelper getComments = NetworkHelper(
         url:
@@ -168,6 +170,7 @@ class _VideoScreenState extends State<VideoScreen> {
     return [];
   }
 
+  /// Function fetches viewer list from the API call
   Future<List<String>> fetchViewerList() async {
     NetworkHelper getViewerList = NetworkHelper(
         url:
@@ -184,6 +187,7 @@ class _VideoScreenState extends State<VideoScreen> {
     return null;
   }
 
+  /// Function called in initState() to fetch data related to the video
   fetchVideoData() async {
     viewerList = await fetchViewerList();
 
@@ -194,6 +198,8 @@ class _VideoScreenState extends State<VideoScreen> {
     }
   }
 
+  /// Function takes [String] as input and downloads the video to the Downloads directory.
+  /// It takes care of the storage permission in case not granted.
   Future<bool> downloadFile({videoDownloadUrl}) async {
     if (await Permission.storage.request().isGranted) {
       // Either the permission was already granted before or the user just granted it.
@@ -250,6 +256,7 @@ class _VideoScreenState extends State<VideoScreen> {
     }
   }
 
+  /// Function opens a Dialog Box showing the types of privacy options available
   Future<int> privacyOptionsDialog({currentSelection, isProtected}) async {
     switch (await showDialog<int>(
         context: context,
@@ -340,6 +347,7 @@ class _VideoScreenState extends State<VideoScreen> {
     }
   }
 
+  /// Function opens a Dialog Box on selection of Limited Access in the privacyOptionsDialog()
   Future<String> limitedOptionsDialog() {
     return showDialog<String>(
       context: context,
@@ -433,6 +441,7 @@ class _VideoScreenState extends State<VideoScreen> {
     );
   }
 
+  /// Function opens a Dialog Box to invite people on selection of Invite People in limitedOptionsDialog()
   Future<String> showInvitePeopleDialog() {
     String email = '';
     return showDialog<String>(
@@ -496,6 +505,7 @@ class _VideoScreenState extends State<VideoScreen> {
     );
   }
 
+  /// Function opens a Dialog Box to add password on selection of Invite People in limitedOptionsDialog()
   Future<String> showAddPasswordDialog() {
     String password = '';
     String confirmPassword = '';
@@ -596,6 +606,7 @@ class _VideoScreenState extends State<VideoScreen> {
     );
   }
 
+  /// Function returns a list of tags which are added to the video. The list of widgets are added inside the Wrap widget
   List<Widget> getTagsList() {
     if (widget.currentVideo.tags.isEmpty) {
       return [Text('No tags')];
