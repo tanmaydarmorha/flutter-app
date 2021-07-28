@@ -321,6 +321,12 @@ class _FolderScreenState extends State<FolderScreen> {
                                                 Navigator.pop(context, 'trash');
                                               },
                                             ),
+                                            ListTile(
+                                              title: Text('Move Folder'),
+                                              onTap: () {
+                                                Navigator.pop(context, 'move');
+                                              },
+                                            ),
                                           ],
                                         );
                                       },
@@ -456,15 +462,38 @@ class _FolderScreenState extends State<FolderScreen> {
                                           });
                                           snackBarMessage = 'Moved to Trash';
                                         } else {
-                                          snackBarMessage = 'Could not move to trash';
+                                          snackBarMessage =
+                                              'Could not move to trash';
                                         }
                                         _scaffoldKey.currentState
                                             .showSnackBar(SnackBar(
-                                          content:
-                                          Text(snackBarMessage),
+                                          content: Text(snackBarMessage),
                                           duration:
-                                          Duration(milliseconds: 1500),
+                                              Duration(milliseconds: 1500),
                                         ));
+                                        break;
+                                      case 'move':
+                                        String response =
+                                            await showDialog<String>(
+                                          useRootNavigator: true,
+                                          barrierDismissible: true,
+                                          context: context,
+                                          builder: (context) {
+                                            return StatefulBuilder(
+                                              builder: (context, setState) {
+                                                return Dialog(
+                                                  child: Column(
+                                                    children: <Widget>[
+                                                      ButtonBar(
+                                                        children: <Widget>[],
+                                                      )
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          },
+                                        );
                                         break;
                                     }
                                   },
